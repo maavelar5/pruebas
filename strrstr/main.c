@@ -11,19 +11,49 @@
 // Seaches for the last complete copy of needle inside haystack
 // Does not need to handle NULL inputs; garbage in, segfault out.
 // Does need to handle empty strings.
-char* strrstr(char* haystack, char* needle) {
+char* strrstr (char* haystack, char* needle)
+{
 
-	// this function should only scan through haystack once.
-	// do not use any library functions
-	
-	return NULL;
+    // this function should only scan through haystack once.
+    // do not use any library functions
+
+    int i = 0, answer = -1;
+
+    while (*(haystack + i))
+    {
+        if (*(haystack + i) == *needle)
+        {
+            int j = 0, result = 0;
+
+            while (*(needle + j))
+            {
+                if (*(haystack + i + j) == *(needle + j))
+                {
+                    j++;
+                    continue;
+                }
+                else
+                {
+                    result = 1;
+                    break;
+                }
+            }
+
+            if (result == 0)
+            {
+                answer = i;
+            }
+
+            i += j;
+        }
+        else
+        {
+            i++;
+        }
+    }
+
+    return (haystack + answer);
 }
-
-
-
-
-
-
 
 int main(int argc, char* argv[]) {
 	
